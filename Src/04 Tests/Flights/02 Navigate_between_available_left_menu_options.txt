@@ -1,0 +1,2 @@
+*** Test Cases ***
+User can navigate in the left menu and landed in correct page

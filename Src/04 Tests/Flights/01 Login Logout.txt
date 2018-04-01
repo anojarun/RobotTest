@@ -1,0 +1,21 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+Customer can Login and able to Logout
+    Open Browser    http://newtours.demoaut.com/    googlechrome    FlightHome
+    Input Text    userName    mercury
+    Input Password    password    mercury
+    Click Image    Login
+    Wait Until Page Contains Element    link=SIGN-OFF    30
+    Click Link    link=SIGN-OFF
+    Close Browser
+
+Customer not able to login with wrong user name and password
+    Open Browser    http://newtours.demoaut.com/    googlechrome    FlightHome
+    Input Text    userName    mercury
+    Input Password    password    wrongpassword
+    Click Image    Login
+    Wait Until Page Contains Element    link=registration form    30
+    Page Should Contain element    link=registration form
+    Close Browser
