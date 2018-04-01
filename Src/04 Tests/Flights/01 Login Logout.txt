@@ -4,9 +4,14 @@ Library           Selenium2Library
 *** Test Cases ***
 Customer can Login and able to Logout
     Open Browser    http://newtours.demoaut.com/    googlechrome    FlightHome
+    Maximize Browser Window
+    Delete All Cookies
     Input Text    userName    mercury
     Input Password    password    mercury
     Click Image    Login
+    ${status}    ${value}=    Run Keyword And Ignore Error    Wait Until Keyword Succeeds    5s    1s    Location Should Contain
+    ...    http://newtours.demoaut.com/mercuryreservation.php
+    Run Keyword If    '${status}'=='FAIL'    Wait Until Keyword Succeeds    5s    1s    Location Should Contain    http://newtours.demoaut.com/mercuryreservation.php
     Wait Until Page Contains Element    link=SIGN-OFF    30
     Click Link    link=SIGN-OFF
     Close Browser
