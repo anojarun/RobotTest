@@ -1,13 +1,14 @@
 *** Settings ***
 Library           Selenium2Library
+Resource          ../../01 Data/Resource.txt
 
 *** Test Cases ***
 Customer can Login and able to Logout
     Open Browser    http://newtours.demoaut.com/    googlechrome    FlightHome
     Maximize Browser Window
     Delete All Cookies
-    Input Text    userName    mercury
-    Input Password    password    mercury
+    Input Text    ${Input_Username}    mercury
+    Input Password    ${Input_Password}    mercury
     Click Image    Login
     ${status}    ${value}=    Run Keyword And Ignore Error    Wait Until Keyword Succeeds    5s    1s    Location Should Contain
     ...    http://newtours.demoaut.com/mercuryreservation.php
