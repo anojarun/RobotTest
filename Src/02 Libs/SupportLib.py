@@ -2,6 +2,7 @@
 
 import time, re, os, logging
 import datetime
+import csv
 
 
 class SupportLib:
@@ -20,3 +21,18 @@ class SupportLib:
         @Returns current time
         """
         return (time.strftime("%d.%m.%Y %H:%M:%S"), time.strftime("%Y-%m-%d 00:00:00.0"), time.strftime("%Y-%m-%d"))
+
+
+    def read_csv_file(self, filename):
+        '''This creates a keyword named "Read CSV File"
+
+        This keyword takes one argument, which is a path to a .csv file. It
+        returns a list of rows, with each row being a list of the data in
+        each column.
+        '''
+        data = []
+        with open(filename, 'rb') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                data.append(row)
+        return data
